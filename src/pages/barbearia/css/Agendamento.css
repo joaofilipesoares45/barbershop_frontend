@@ -1,0 +1,732 @@
+@keyframes spin {
+    from {
+        rotate: 0deg;
+    }
+
+    to {
+        rotate: 360deg;
+    }
+}
+
+@keyframes spawn {
+    from {
+        transform: translateY(-10px);
+        height: 0%;
+    }
+
+    to {
+        transform: translateY(0px);
+        height: 100%;
+    }
+}
+
+.modal-agendamento {
+    background: linear-gradient(rgba(255, 255, 255, 0), black);
+    backdrop-filter: blur(4px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    scale: .95;
+    pointer-events: none;
+    transition: .3s;
+
+    & .form-agendamento {
+        width: 90%;
+        max-width: 600px;
+        background-color: rgb(227, 227, 227);
+        padding: 10px;
+        border-radius: 10px;
+        border: solid 2px rgb(154, 154, 154);
+
+        overflow: hidden;
+        z-index: -1;
+        opacity: 0;
+        transition: .3s;
+        position: absolute;
+
+        &[open] {
+            opacity: 1;
+            z-index: 1;
+            position: relative;
+        }
+
+        & .fa-xmark {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 1.5rem;
+            padding: 5px 8px;
+            background: var(--orange);
+            color: white;
+            border-bottom-left-radius: 10px;
+            transition: .3s;
+
+            &:hover {
+                background-color: var(--firebrick);
+            }
+        }
+
+        & h3 {
+            color: rgb(0, 0, 0);
+            border-bottom: solid 2px rgb(0, 0, 0);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 10px;
+        }
+
+        & .agend-services {
+            & h4 {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                max-width: 400px;
+                margin-top: 10px;
+
+                & svg {
+                    color: white;
+                }
+            }
+
+
+            & .itens {
+                width: 100%;
+                max-width: 400px;
+                max-height: 200px;
+                overflow-y: auto;
+                overflow-x: hidden;
+                margin-top: 10px;
+                border: solid 1px rgb(0, 0, 0);
+                color: rgb(0, 0, 0);
+                display: flex;
+                flex-direction: column-reverse;
+
+                & .item-agendamento {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin: 5px;
+                    border-bottom: solid 2px gray;
+                    padding: 5px;
+                    transition: .3s;
+
+                    &:first-child {
+                        border-bottom: none;
+                    }
+
+                    &[center] {
+                        font-size: 1.1rem;
+                        font-weight: 500;
+                        border-radius: 5px;
+                        line-clamp: 2px;
+
+                        & p {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            justify-content: center;
+                            text-align: center;
+
+                            & span {
+                                font-size: .6rem;
+
+                                & strong {
+                                    font-size: .65rem;
+                                }
+                            }
+                        }
+
+
+                        & svg {
+                            font-size: 1.4rem;
+                            padding: 0;
+                            border-radius: 5;
+                        }
+                    }
+
+                    & div {
+                        & p:last-child {
+                            font-weight: 600;
+                        }
+                    }
+
+                    & svg {
+                        padding: 10px;
+                        border-radius: 50%;
+                        transition: .3s;
+
+                        &.fa-trash:hover {
+                            background-color: white;
+                            color: red;
+                        }
+                    }
+                }
+            }
+        }
+
+        & .inputs {
+            display: flex;
+            flex-direction: column;
+            margin-top: 10px;
+            margin-bottom: 20px;
+
+            & div {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 20px;
+                width: 90%;
+
+                & label {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    max-width: 400px;
+                    padding-right: 5px;
+                }
+
+                & input {
+                    width: 100%;
+                    max-width: 400px;
+                    min-width: 300px;
+                    font-size: 1rem;
+                    font-weight: 550;
+                    background-color: transparent;
+                    border-bottom: solid 2px gray;
+                    transition: .3s;
+
+                    &:focus {
+                        color: var(--orange);
+                    }
+                }
+
+                & nav {
+                    display: grid;
+                    grid-template-columns: repeat(4, 1fr);
+                    gap: 5px;
+                    justify-items: center;
+                    border: solid 1px gray;
+                    margin-top: 10px;
+                    padding: 5px;
+                    max-width: 400px;
+                    animation: spawn .5s;
+                    transition: .3s;
+
+                    & span {
+                        cursor: pointer;
+                        padding: 10px;
+                        font-size: .85rem;
+                        border-radius: 10px;
+                        font-weight: 550;
+                        transition: .3s;
+
+                        &:hover {
+                            background-color: rgb(209, 209, 209);
+                        }
+
+                        &[selected] {
+                            background-color: var(--orange);
+                            color: white;
+                        }
+
+                        &[state='reserved'] {
+                            text-decoration: line-through;
+                            background-color: red;
+                            cursor: auto;
+                            color: white;
+                            position: relative;
+                            display: flex;
+
+                            &::after {
+                                content: 'Horario reservado';
+                                position: absolute;
+                                left: calc(100% + 10px);
+
+                                opacity: 0;
+                                background-color: red;
+                                align-self: center;
+                                transition: .3s;
+                                padding: 3px;
+                                border-radius: 5px;
+                                font-size: 12px;
+                                text-wrap: nowrap;
+                                pointer-events: none;
+                            }
+
+                            &:hover {
+                                &::after {
+                                    z-index: 1;
+                                    opacity: 1;
+                                }
+                            }
+                        }
+
+                        &[state='pass'] {
+                            display: none;
+                        }
+
+                    }
+
+                    & div[state='final'] {
+                        text-wrap: nowrap;
+                        margin: 0 auto;
+                    }
+                }
+            }
+        }
+
+        & form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        & button {
+            display: flex;
+            align-self: flex-end;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+
+            width: 30%;
+            padding: 10px 15px;
+            border-radius: 5px;
+
+            font-size: 1.1rem;
+            font-weight: 500;
+
+            background-color: var(--orange);
+            color: white;
+            transition: .3s;
+
+            &:hover {
+                background-color: red;
+            }
+
+            & svg,
+            span {
+                pointer-events: none;
+            }
+
+
+        }
+    }
+
+    .resumo-agendamento {
+        width: 90%;
+        max-width: 600px;
+        height: 100%;
+        max-height: 440px;
+        background-color: rgb(227, 227, 227);
+        padding: 10px;
+        border-radius: 10px;
+        border: solid 2px rgb(154, 154, 154);
+
+        overflow: hidden;
+        z-index: -1;
+        opacity: 0;
+        transition: .3s;
+        position: absolute;
+
+        display: flex;
+        flex-direction: column;
+
+        &[open] {
+            opacity: 1;
+            position: relative;
+        }
+
+        & h3 {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            border-bottom: solid 2px red;
+            padding-bottom: 5px;
+
+            & svg {
+                padding: 5px 9px;
+                margin-right: 10px;
+                border-radius: 50%;
+                background-color: red;
+                color: white;
+            }
+        }
+
+        & .content {
+            & h4 {
+                margin-bottom: 10px;
+                font-weight: 550;
+            }
+
+            & p {
+                margin-bottom: 3px;
+
+                & span {
+                    font-size: 12px;
+
+                    & strong {
+                        text-decoration: underline;
+                    }
+                }
+            }
+
+            & hr {
+                margin-block: 10px;
+                border: solid 1px black;
+            }
+
+            & div.servicos-resumo {
+                padding-bottom: 10px;
+                display: flex;
+                flex-direction: column;
+                /* height: 100%; */
+                max-height: 150px;
+                width: 100%;
+                max-width: 250px;
+                overflow-y: auto;
+                padding-right: 10px;
+                padding-top: 0px;
+
+                & h5 {
+                    position: sticky;
+                    top: 0;
+                    background-color: rgb(227, 227, 227);
+                    padding: 5px 10px;
+                    padding-left: 0px;
+                }
+
+                & span {
+                    display: flex;
+                    justify-content: space-between;
+                    border-bottom: solid 2px rgb(129, 129, 129);
+                    padding: 5px;
+
+                    &:last-child {
+                        border-bottom: none;
+                    }
+                }
+            }
+
+            & p.total-price {
+                font-weight: 600;
+            }
+        }
+
+        & button {
+            position: absolute;
+            bottom: 10px;
+            width: calc(100% - 20px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 10px;
+            border-radius: 5px;
+            background-color: var(--orange);
+            color: white;
+            font-weight: 550;
+
+            & span {
+                font-size: .9rem;
+                margin-right: 10px;
+                pointer-events: none;
+            }
+
+            .fa-spinner {
+                display: none;
+                animation: spin 1s infinite;
+                pointer-events: none;
+            }
+
+            &[load] {
+                background-color: red;
+                padding-inline: 20px;
+
+                .fa-spinner {
+                    display: block;
+                    font-size: 1.5rem;
+
+                    & path {
+                        width: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .modal-agendamento {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: linear-gradient(rgba(255, 255, 255, 0), black);
+        backdrop-filter: blur(4px);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        opacity: 0;
+        scale: .95;
+        pointer-events: none;
+        transition: .3s;
+
+        &[open] {
+            opacity: 1;
+            scale: 1;
+            pointer-events: all;
+        }
+
+        & .form-agendamento {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between !important;
+
+            width: 100vw;
+            height: 100vh;
+            padding: 10px;
+            padding-bottom: 50px;
+            border: none;
+            border-radius: 0;
+            overflow: hidden;
+
+            &[open] {
+                position: relative;
+            }
+
+            & .fa-xmark {
+                position: absolute;
+                top: 0;
+                right: 0;
+                font-size: 1.5rem;
+                padding: 5px 8px;
+                background: var(--orange);
+                color: white;
+                border-bottom-left-radius: 10px;
+                transition: .3s;
+
+                &:hover {
+                    background-color: var(--firebrick);
+                }
+            }
+
+            & h3 {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding-bottom: 10px;
+            }
+
+            & .agend-services {
+                & h4 {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    width: 100%;
+                    max-width: 400px;
+                    margin-top: 10px;
+
+                    & svg {
+                        color: white;
+                    }
+                }
+
+                & .itens {
+                    width: 100%;
+                    max-width: 400px;
+                    max-height: 350px;
+                    overflow-y: auto;
+                    margin-top: 10px;
+
+                    & .item-agendamento {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        margin: 5px;
+
+                        padding: 1px;
+
+                        &[center] {
+                            justify-content: center;
+                            font-size: 1.1rem;
+                            font-weight: 500;
+                            border-radius: 5px;
+
+                            & p {
+                                font-size: 1rem;
+
+                                & span {
+                                    font-size: .55rem;
+                                }
+                            }
+
+                            & svg {
+                                font-size: 1rem;
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+
+            & .inputs {
+                display: flex;
+                flex-direction: column;
+                margin-top: 10px;
+
+                & div {
+                    display: flex;
+                    flex-direction: column;
+                    margin-bottom: 10px;
+                    width: 90%;
+
+                    & input {
+                        width: 100%;
+                        max-width: 400px;
+                        min-width: 300px;
+                        font-size: 1rem;
+                        font-weight: 550;
+                        background-color: transparent;
+                        border-bottom: solid 2px gray;
+                    }
+                }
+            }
+
+            & form {
+                display: flex;
+                flex-direction: column;
+                flex: auto;
+
+            }
+
+            & button {
+                display: flex;
+                justify-content: space-between;
+                align-self: center;
+                width: calc(100% - 20px);
+
+                padding: 10px;
+                border-radius: 5px;
+
+                position: absolute;
+                bottom: 10px;
+                text-align: center;
+                font-size: .9rem;
+
+                & svg {
+                    margin-left: 3px;
+                }
+            }
+        }
+
+        .resumo-agendamento {
+            width: 100vw;
+            min-height: 100vh;
+            background-color: rgb(227, 227, 227);
+            padding: 10px;
+            border-radius: 0px;
+            border: none;
+            border: solid 2px rgb(154, 154, 154);
+
+            overflow: hidden;
+            z-index: -1;
+            opacity: 0;
+            transition: .3s;
+            position: absolute;
+
+            &[open] {
+                opacity: 1;
+                position: relative;
+            }
+
+            & h3 {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 10px;
+                border-bottom: solid 2px red;
+                padding-bottom: 5px;
+                padding-right: 35%;
+
+                & svg {
+                    padding: 5px 9px;
+                    margin-right: 10px;
+                    border-radius: 50%;
+                    background-color: red;
+                    color: white;
+                }
+            }
+
+            & h4 {
+                margin-bottom: 10px;
+                font-weight: 550;
+            }
+
+            & p {
+                margin-top: 3px;
+                display: flex;
+                flex-direction: column;
+
+                & span {
+                    font-size: 11px;
+
+                    & strong {
+                        text-decoration: underline;
+                    }
+                }
+            }
+
+            & div.servicos-resumo {
+                display: flex;
+                flex-direction: column;
+                max-height: 150px;
+                width: 100%;
+                max-width: 250px;
+                overflow-y: auto;
+                padding-right: 10px;
+                padding-top: 0px;
+
+                & h5 {
+                    position: sticky;
+                    top: 0;
+                    background-color: rgb(227, 227, 227);
+                    padding: 5px 10px;
+                    padding-left: 0px;
+                }
+
+                & span {
+                    display: flex;
+                    justify-content: space-between;
+                    border-bottom: solid 2px rgb(129, 129, 129);
+                    padding: 5px;
+
+                    &:last-child {
+                        border-bottom: none;
+                    }
+                }
+            }
+
+            & p.total-price {
+                font-weight: 600;
+            }
+
+            & button {
+                width: calc(100% - 20px);
+                padding: 10px;
+                border-radius: 5px;
+                background-color: var(--orange);
+                color: white;
+                font-size: .9rem;
+                font-weight: 550;
+                position: absolute;
+                bottom: 10px;
+            }
+        }
+
+    }
+}

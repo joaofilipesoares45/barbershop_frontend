@@ -1,0 +1,411 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+main.BarberSide {
+    background-color: white;
+
+    & header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        background-color: var(--modal-color);
+        color: white;
+        box-shadow: 0 3px 10px rgba(0, 31, 74, 0.472);
+        z-index: 1;
+        position: sticky;
+        top: 0;
+        height: 7vh;
+        min-height: 50px;
+
+        & h1 {
+            font-size: 1.5rem;
+        }
+
+        & nav {
+            display: flex;
+            flex-direction: row;
+
+            & svg {
+                font-size: 1.3rem;
+                padding: 5px 8px;
+                border-radius: 5px;
+                background-color: white;
+                color: var(--modal-color);
+                margin-left: 8px;
+
+                transition: .3s;
+
+                &:hover {
+                    background-color: rgb(79, 79, 255);
+                    color: white;
+                    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.603);
+                }
+            }
+
+            & div {
+                display: flex;
+                align-items: center;
+                background-color: white;
+                color: var(--modal-color);
+                border-radius: 5px;
+                padding-left: 10px;
+                cursor: pointer;
+                transition: .3s;
+
+                &:hover {
+                    background-color: rgb(79, 79, 255);
+                    color: white;
+                    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.603);
+
+                    & svg {
+                        background-color: rgb(79, 79, 255);
+                        color: white;
+                        box-shadow: none;
+                    }
+                }
+            }
+        }
+    }
+
+    & section.content {
+        width: 100%;
+        height: 93vh;
+
+        display: flex;
+        flex-direction: column;
+
+        & h2.title {
+            font-size: 1.2rem;
+            margin: 10px;
+            margin-top: 20px;
+            padding: 0 !important;
+        }
+
+        & .first-layer {
+            & div.info {
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.27);
+                margin: 10px;
+                padding: 10px;
+                border-radius: 5px;
+
+                & h3 {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    font-size: 1rem;
+
+                    & p {
+                        font-size: .8rem;
+                        color: gray;
+                    }
+
+                    & nav {
+                        margin-right: 5px;
+
+                        & svg {
+                            padding: 5px 8px;
+                            color: white;
+                            background-color: var(--modal-color);
+                            border-radius: 50%;
+
+                            &:first-child {
+                                margin-right: 15px;
+                            }
+                        }
+                    }
+                }
+
+
+                &.work-days {
+                    & .week-days {
+                        display: grid;
+                        grid-template-columns: repeat(7, 1fr);
+                        padding: 5px;
+                        gap: 5px;
+                        margin-top: 10px;
+                        background-color: rgb(233, 233, 233);
+
+                        & span {
+                            text-align: center;
+                            padding-block: 5px;
+                            background-color: white;
+                            border-radius: 5px;
+                            font-weight: 550;
+
+                            &[attr=true] {
+                                background-color: var(--modal-color);
+                                color: white !important;
+
+                                & p {
+                                    color: white;
+                                }
+                            }
+
+                            & p {
+                                font-size: .8rem;
+                                color: gray;
+                            }
+                        }
+                    }
+
+                    & .hours {
+                        display: grid;
+                        grid-template-columns: repeat(7, 1fr);
+                        margin-top: 10px;
+                        transition: .3s;
+
+                        & div {
+                            display: flex;
+                            flex-direction: column;
+                            border-inline: solid 1px gainsboro;
+                            padding: 3px;
+
+
+                            & span {
+                                display: flex;
+                                flex-direction: column;
+                                text-align: center;
+                                padding-block: 5px;
+                                border-radius: 5px;
+                                margin-bottom: 5px;
+                                font-size: .8rem;
+                                background-color: rgb(235, 235, 235);
+                                cursor: pointer;
+                                transition: .3s;
+                                animation: show-down .1s;
+
+                                &:hover {
+                                    background-color: rgb(204, 204, 204);
+                                }
+
+                            }
+
+                            & div {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                text-align: center;
+                                /* height: 100%; */
+                                border: none;
+                                color: gray;
+                                font-size: .7rem;
+                                padding-block: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 700px) {
+    main.BarberSide {
+        background-color: white;
+
+        & header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: var(--modal-color);
+            color: white;
+            box-shadow: 0 3px 10px rgba(0, 31, 74, 0.648);
+            z-index: 1;
+            position: sticky;
+            top: 0;
+            height: 7vh;
+            min-height: 50px;
+
+            & h1 {
+                font-size: 1.5rem;
+            }
+
+            & nav {
+                display: flex;
+                flex-direction: row;
+
+                & svg {
+                    font-size: 1.3rem;
+                    padding: 5px 8px;
+                    border-radius: 5px;
+                    background-color: white;
+                    color: var(--modal-color);
+                    margin-left: 8px;
+
+                    transition: .3s;
+
+                    &:hover {
+                        background-color: rgb(79, 79, 255);
+                        color: white;
+                        box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.603);
+                    }
+                }
+
+                & div {
+                    display: flex;
+                    align-items: center;
+                    background-color: white;
+                    color: var(--modal-color);
+                    border-radius: 5px;
+                    padding-left: 10px;
+                    cursor: pointer;
+                    transition: .3s;
+
+                    &:hover {
+                        background-color: rgb(79, 79, 255);
+                        color: white;
+                        box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.603);
+
+                        & svg {
+                            background-color: rgb(79, 79, 255);
+                            color: white;
+                            box-shadow: none;
+                        }
+                    }
+                }
+            }
+        }
+
+        & section.content {
+            width: 100%;
+            height: 93vh;
+
+            display: flex;
+            flex-direction: column;
+
+            & h2.title {
+                font-size: 1.2rem;
+                /* margin: 30px 10px; */
+            }
+
+            & .first-layer {
+                
+                & div.info {
+                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.27);
+                    margin: 10px;
+                    padding: 10px;
+                    border-radius: 5px;
+
+                    & h3 {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+
+                        & p {
+                            font-size: .8rem;
+                            color: gray;
+                        }
+
+                        & nav {
+                            margin-right: 5px;
+
+                            & svg {
+                                padding: 5px 8px;
+                                color: white;
+                                background-color: var(--modal-color);
+                                border-radius: 50%;
+
+                                &:first-child {
+                                    margin-right: 15px;
+                                }
+                            }
+                        }
+                    }
+
+
+                    &.work-days {
+                        & .main {
+                            display: flex;
+                            flex-direction: row;
+
+                        }
+
+                        & .week-days {
+                            display: grid;
+                            grid-template-columns: repeat(1, 1fr);
+                            padding: 5px;
+                            gap: 5px;
+                            margin-top: 10px;
+                            background-color: rgb(233, 233, 233);
+
+                            & span {
+                                text-align: center;
+                                padding: 5px 10px;
+                                background-color: white;
+                                border-radius: 5px;
+                                font-weight: 550;
+                                font-size: .8rem;
+
+                                &[attr=true] {
+                                    background-color: var(--modal-color);
+                                    color: white !important;
+
+                                    & p {
+                                        color: white;
+                                    }
+                                }
+
+                                & p {
+                                    font-size: .7rem;
+                                    color: gray;
+                                }
+                            }
+                        }
+
+                        & .hours {
+                            display: grid;
+                            grid-template-columns: repeat(1, 1fr);
+                            grid-template-rows: repeat(7, 1fr);
+                            margin: 10px;
+                            margin-right: 0;
+                            margin-bottom: 0px;
+                            width: 100%;
+
+                            & div {
+                                display: flex;
+                                flex-direction: row;
+                                border-bottom: solid 2px gainsboro;
+                                border-inline: none;
+                                overflow-x: auto;
+
+                                &::-webkit-scrollbar {
+                                    background-color: rgba(255, 255, 255, 0);
+                                    position: absolute;
+                                    width: 2px;
+                                    height: 1px;
+                                }
+
+                                &::-webkit-scrollbar-thumb {
+                                    background-color: rgba(184, 184, 184, 0.504);
+                                    border-radius: 10px;
+                                }
+
+                                &[reserved=true] {
+                                    background-color: red;
+                                }
+
+                                & span {
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    text-align: center;
+                                    text-wrap: nowrap;
+                                    padding: 0 10px;
+                                    margin-bottom: 0;
+                                    margin: 3px;
+                                    font-size: .7rem;
+                                    animation: show-left .1s;
+                                }
+
+                                & div {
+                                    width: 100%;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

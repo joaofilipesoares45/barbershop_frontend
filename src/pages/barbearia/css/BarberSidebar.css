@@ -1,0 +1,268 @@
+.sidebar-barbearia {
+    position: absolute;
+    left: auto;
+    right: 10px;
+    z-index: 2;
+    scale: 1;
+
+    max-width: 280px;
+    height: 100vh;
+    width: 0px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding-bottom: 10px;
+    opacity: 1 !important;
+    overflow: hidden;
+
+    transition: .3s !important;
+
+    &[open] {
+        width: 100%;
+        transition: all .5s, top 0s !important;
+        opacity: 1;
+
+        .navigation-sidebar {
+            filter: blur(0px);
+        }
+    }
+
+    .navigation-sidebar {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        text-wrap: nowrap;
+
+        width: calc(100% - 20px);
+        height: calc(100vh - 20px);
+        padding: 10px;
+        margin-top: 10vh;
+        border-radius: 10px;
+
+        background-color: white;
+        filter: blur(1px);
+        transition: .7s;
+        box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.465);
+
+        & nav {
+            & button {
+                background-color: white;
+                color: black;
+                border-bottom: solid 2px;
+
+                border-radius: 0;
+                font-size: .9rem;
+                font-weight: 550;
+                padding: 5px 0;
+                padding-right: 5px;
+
+                &:hover {
+                    filter: none;
+                    color: var(--firebrick);
+                    border-bottom: solid 2px var(--firebrick);
+                }
+            }
+        }
+
+        & .content {
+            & h2 {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                border-bottom: solid 2px rgb(206, 206, 206);
+                padding-bottom: 5px;
+                margin-bottom: 20px;
+                
+                & svg {
+                    font-size: 1.7rem;
+                    padding: 5px 9px;
+                    border-radius: 50%;
+                    background-color: red;
+                    color:white;
+                }
+            }
+
+            & h3 {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                cursor: pointer;
+                margin-block: 20px 10px;
+            }
+
+            & .list-agendamentos {
+                display: flex;
+                flex-direction: column;
+                overflow-y: auto;
+                position: relative;
+                overflow-x: hidden;
+
+                max-height: 300px;
+                border: solid 3px rgb(232, 232, 232);
+                padding: 5px;
+
+                & div {
+                    display: flex;
+                    flex-direction: column;
+                    font-weight: 550;
+                    padding: 10px; 
+                    
+
+                    & span {
+                        display: flex;
+                        align-items: flex-end;
+                        justify-content: space-between;
+                        font-size: .8rem;
+
+                        &:first-child{
+                            font-size: 1rem;
+                        }
+                    }
+
+                    & hr {
+                        margin-block: 5px;
+                    }
+                    
+                    & p {
+                        font-size: .8rem;
+                    }
+
+                    &:not(:last-child) {
+                        border-bottom: solid 2px rgb(212, 212, 212);
+                    }
+
+                    &[none]{
+                        display: flex;
+                    }
+                }
+            }
+        }
+
+        & button {
+            width: calc(100%);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-top: 10px;
+            padding: 10px 15px;
+            border-radius: 10px;
+            background-color: var(--firebrick);
+            color: white;
+            font-size: 1.2rem;
+            transition: .3s;
+
+            &:hover {
+                filter: contrast(5);
+            }
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .sidebar-barbearia {
+        position: absolute;
+        left: auto;
+        right: 10px;
+        z-index: 2;
+        scale: 1;
+
+        max-width: none !important;
+        height: 100vh;
+        width: 0px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        padding-bottom: 10px;
+        opacity: 0;
+        overflow: hidden;
+
+        &[open] {
+            width: 100%;
+            transition: all .5s, top 0s !important;
+            opacity: 1;
+        }
+
+        .navigation-sidebar {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            width: calc(100% - 20px);
+            height: 100%;
+            padding: 10px;
+            margin-top: 10vh;
+            border-radius: 10px;
+            background-color: white;
+
+            & nav {
+                & button {
+                    background-color: white;
+                    color: black;
+                    border-bottom: solid 2px;
+
+                    border-radius: 0;
+                    font-size: .9rem;
+                    font-weight: 550;
+                    padding: 5px 0;
+                    padding-right: 5px;
+
+                    &:hover {
+                        filter: none;
+                        color: var(--firebrick);
+                        border-bottom: solid 2px var(--firebrick);
+                    }
+                }
+            }
+
+            & .content {
+                & h3 {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    cursor: pointer;
+                    margin-block: 20px 10px;
+                }
+
+                & .list-agendamentos {
+                    display: flex;
+                    flex-direction: column;
+                    overflow-y: auto;
+                    position: relative;
+
+                    max-height: 300px;
+                    padding: 5px;
+
+                    & div {
+                        display: flex;
+                        flex-direction: column;
+                        padding: 5px;
+                    }
+                }
+            }
+
+            & button {
+                width: calc(100%);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                margin-top: 10px;
+                padding: 10px 15px;
+                border-radius: 10px;
+                background-color: var(--firebrick);
+                color: white;
+                font-size: 1.2rem;
+                transition: .3s;
+
+                &:hover {
+                    filter: contrast(5);
+                }
+            }
+        }
+    }
+
+}

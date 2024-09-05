@@ -1,0 +1,54 @@
+.BarberSide .sidebar {
+    display: flex;
+    justify-content: flex-end;
+    pointer-events: none;
+
+    &[open] {
+        pointer-events: all;
+        backdrop-filter: blur(2px);
+
+        & .content {
+            width: 400px;
+        }
+    }
+
+    & .content {
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.237);
+        width: 0px;
+        transition: .3s;
+        overflow: hidden;
+
+        & span {
+            display: flex;
+            align-items: center;
+            align-self: center;
+            justify-content: space-between;
+            padding-inline: 15px;
+            height: 7vh;
+            min-height: 50px;
+            border-bottom: solid 2px gray;
+            width: calc(100% - 10px);
+
+            & svg.fa-xmark {
+                font-size: 1.5rem;
+                padding: 2px 4px;
+                border-radius: 10px;
+                color: rgb(0, 0, 0);
+                transition: .3s;
+
+                &:hover {
+                    color: red;
+                    background-color: white;
+                }
+            }
+        }
+
+        .main {
+            padding: 10px;
+            height: calc(100% - 45px);
+        }
+    }
+}

@@ -1,0 +1,232 @@
+.barber-side-agendamento{
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(2px);
+
+    &[open] .resumo-agendamento{
+        animation: show-down .3s;
+    }
+
+    .resumo-agendamento {
+        width: 90%;
+        max-width: 600px;
+        height: 100%;
+        max-height: 440px;
+        background-color: rgb(255, 255, 255);
+        padding: 10px;
+        border-radius: 10px;
+        border: solid 2px rgb(154, 154, 154);
+
+        overflow: hidden;
+        transition: .3s;
+
+        display: flex;
+        flex-direction: column;
+
+        & h3 {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            border-bottom: solid 2px red;
+            padding-bottom: 5px;
+
+            & svg {
+                padding: 5px 9px;
+                margin-right: 10px;
+                border-radius: 50%;
+                background-color: red;
+                color: white;
+            }
+        }
+
+        & .content {
+            & h4 {
+                margin-bottom: 10px;
+                font-weight: 550;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                & svg {
+                    font-size: 1.3rem;
+                }
+            }
+
+            & p {
+                margin-bottom: 3px;
+
+                & span {
+                    font-size: 12px;
+
+                    & strong {
+                        text-decoration: underline;
+                    }
+                }
+            }
+
+            & hr {
+                margin-block: 10px;
+                border: solid 1px black;
+            }
+
+            & div.servicos-resumo {
+                padding-bottom: 10px;
+                display: flex;
+                flex-direction: column;
+                /* height: 100%; */
+                max-height: 150px;
+                width: 100%;
+                max-width: 250px;
+                overflow-y: auto;
+                padding-right: 10px;
+                padding-top: 0px;
+
+                & h5 {
+                    position: sticky;
+                    top: 0;
+                    background-color: rgb(227, 227, 227);
+                    padding: 5px 10px;
+                    padding-left: 5px;
+                }
+
+                & span {
+                    display: flex;
+                    justify-content: space-between;
+                    border-bottom: solid 2px rgb(129, 129, 129);
+                    padding: 5px;
+
+                    &:last-child {
+                        border-bottom: none;
+                    }
+                }
+            }
+
+            & p.total-price {
+                font-weight: 600;
+            }
+        }
+
+        & button {
+            position: absolute;
+            bottom: 10px;
+            width: calc(100% - 20px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 10px;
+            border-radius: 5px;
+            background-color: var(--orange);
+            color: white;
+            font-weight: 550;
+
+            & span {
+                font-size: .9rem;
+                margin-right: 10px;
+                pointer-events: none;
+            }
+
+            .fa-spinner {
+                display: none;
+                animation: spin 1s infinite;
+                pointer-events: none;
+            }
+
+            &[load] {
+                background-color: red;
+                padding-inline: 20px;
+
+                .fa-spinner {
+                    display: block;
+                    font-size: 1.5rem;
+
+                    & path {
+                        width: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .resumo-agendamento {
+        width: 100vw !important;
+        min-height: 100vh;
+        background-color: rgb(227, 227, 227);
+        padding: 10px;
+        border-radius: 0px !important;
+        border: none !important;
+
+        overflow: hidden;
+        transition: .3s;
+
+        & h4 {
+            margin-bottom: 10px;
+            font-weight: 550;
+        }
+
+        & p {
+            margin-top: 3px;
+            display: flex;
+            flex-direction: column;
+
+            & span {
+                font-size: 11px;
+
+                & strong {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        & div.servicos-resumo {
+            display: flex;
+            flex-direction: column;
+            max-height: 150px;
+            width: 100%;
+            max-width: 250px;
+            overflow-y: auto;
+            padding-right: 10px;
+            padding-top: 0px;
+
+            & h5 {
+                position: sticky;
+                top: 0;
+                background-color: rgb(227, 227, 227);
+                padding: 5px 10px;
+                padding-left: 0px;
+            }
+
+            & span {
+                display: flex;
+                justify-content: space-between;
+                border-bottom: solid 2px rgb(129, 129, 129);
+                padding: 5px;
+
+                &:last-child {
+                    border-bottom: none;
+                }
+            }
+        }
+
+        & p.total-price {
+            font-weight: 600;
+        }
+
+        & button {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border-radius: 5px;
+            background-color: var(--orange);
+            color: white;
+            font-size: .9rem;
+            font-weight: 550;
+            position: absolute;
+            bottom: 10px;
+        }
+    }
+}

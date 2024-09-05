@@ -1,0 +1,688 @@
+@keyframes scale-animation {
+    0% {
+        scale: 1;
+    }
+
+    50% {
+        scale: 1.2;
+    }
+
+    100% {
+        scale: 1;
+    }
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    width: 100%;
+    height: 100vh;
+    transition: .3s, top 0s !important;
+    transition-delay: .3s;
+
+    &[open] {
+        opacity: 1;
+        pointer-events: all;
+        scale: 1;
+    }
+}
+
+.img-zoom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(rgba(255, 255, 255, 0), black);
+    backdrop-filter: blur(4px);
+
+
+    padding-block: 30px;
+    opacity: 0;
+    pointer-events: none;
+    transition: .2s;
+    scale: .95;
+
+    & .fa-xmark {
+        background-color: white;
+        padding: 10px 13px;
+        font-size: 1.4rem;
+        border-radius: 50%;
+        position: absolute;
+        top: 120px;
+        transition: .3s;
+
+        &:hover {
+            background-color: var(--orange);
+            color: white;
+        }
+    }
+
+    & img {
+        max-width: 90%;
+        border-radius: 20px
+    }
+}
+
+main.Barbearia {
+    width: 100%;
+    min-height: 100vh;
+    background-color: transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(21, 21, 21) 100%);
+    display: flex;
+    flex-direction: column;
+
+    & header {
+        width: 98%;
+        height: calc(7vh);
+        min-height: 50px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        align-self: center;
+
+        padding-inline: 30px 10px;
+        border-radius: 10px;
+
+        background: var(--gradient);
+        color: white;
+        box-shadow: 0 2px 5px rgba(181, 62, 12, 0.578);
+
+        position: sticky;
+        top: 10px;
+        z-index: 2;
+        transition: .3s;
+
+        &[expand] {
+            width: 100%;
+            height: calc(7vh);
+
+            top: 0;
+            border-radius: 0;
+            box-shadow: 0 2px 10px black;
+
+        }
+
+        & h1 {
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            text-wrap: nowrap;
+
+            & a {
+                margin-right: 5px;
+                display: flex;
+            }
+
+            & svg {
+                font-size: 1.2rem;
+                padding: 10px 14px;
+                border-radius: 50%;
+                transition: .3s;
+                color: white;
+
+                &:hover {
+                    background-color: white;
+                    color: var(--firebrick);
+                }
+            }
+        }
+
+        & nav {
+            display: flex;
+            align-items: center;
+            position: relative;
+
+            & span {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: rgba(255, 0, 0, 0.527);
+                color: rgb(255, 255, 255);
+                font-size: 1rem;
+                padding: 3px 10px;
+                margin-inline: 2px;
+                border-radius: 14px;
+                cursor: pointer;
+                transition: .3s;
+
+                &:hover {
+                    background-color: white;
+                    color: var(--firebrick);
+                }
+
+                & p {
+                    margin-right: 10px;
+                }
+
+                & svg {
+                    padding: 0px;
+                    pointer-events: none;
+                }
+            }
+
+            & svg {
+                font-size: 1.5rem;
+                padding: 6px 7px;
+                border-radius: 50%;
+                margin: 3px;
+
+                &:hover {
+                    background-color: white;
+                    color: var(--firebrick);
+                }
+            }
+        }
+    }
+
+    & .barber-div {
+        min-height: 90vh;
+        padding: 5px 15px;
+        padding-top: 40px;
+
+        display: flex;
+        flex-direction: column;
+        flex: auto;
+
+        & h2.welcome {
+            text-align: center;
+            font-size: 1.1rem;
+            color: white;
+            margin-bottom: 40px;
+            border-bottom: solid 2px white;
+            padding-bottom: 20px;
+
+            & span {
+                font-size: 1.4rem;
+            }
+        }
+
+        & section.section-agendamento-btn {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            animation: var(--show-down) .5s .5s;
+
+            & div.barber-logo {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 80%;
+
+                & img {
+                    border-radius: 10px;
+                    width: 300px;
+                    height: 300px;
+                    background-color: white;
+                }
+            }
+
+            & div.btn-agendamento-- {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+
+                width: 100%;
+                margin-right: 10px;
+                padding: 5px 10px;
+                background-color: white;
+                border-radius: 10px;
+
+                div.barber-description {
+                    margin-bottom: 10px;
+
+                    & h3 {
+                        font-size: 1.4rem;
+                    }
+
+                    & h4 {
+                        font-size: 1.3rem;
+                        margin-top: 10px;
+                    }
+
+                    & h5 {
+                        margin-top: 30px;
+                    }
+
+                    & nav {
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        /* max-width: 400px; */
+
+                        & span {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            width: 100%;
+                            max-width: 130px;
+                            cursor: pointer;
+                            padding: 5px 5px 5px;
+                            margin-right: 10px;
+                            border-bottom: solid 2px black;
+
+                            &:hover {
+                                color: var(--firebrick);
+                                border-bottom: solid 2px var(--firebrick);
+                            }
+                        }
+                    }
+
+                }
+
+                & button {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    width: 100%;
+                    max-width: 300px;
+                    padding: 10px;
+                    border-radius: 10px;
+                    margin-bottom: 5px;
+
+                    background: var(--orange);
+                    color: white;
+                    font-size: .9rem;
+                    font-weight: 500;
+                    transition: .3s;
+
+                    &:hover {
+                        filter: contrast(1.8);
+                    }
+
+                    & svg {
+                        margin-left: 10px;
+                    }
+                }
+            }
+        }
+
+        & .services-list {
+            display: flex;
+            flex-direction: column;
+
+            & h3 {
+                margin-bottom: 20px;
+                color: white;
+                border-bottom: solid 2px white;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 3px;
+
+                & span {
+                    padding: 5px;
+                    cursor: pointer;
+                    transition: .3s;
+                    border-radius: 5px;
+                    font-size: .8rem;
+
+                    &:hover {
+                        background-color: white;
+                        color: black;
+                    }
+
+                    & svg {
+                        margin-left: 5px;
+                    }
+                }
+            }
+
+            & .services-slide {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                overflow-x: scroll;
+                overflow: hidden;
+                padding-bottom: 10px;
+                padding-left: 5px;
+                width: 100%;
+                height: 400px;
+                transition: .3s;
+
+
+                &::-webkit-scrollbar {
+                    background-color: rgba(0, 0, 0, 0);
+                    height: 5px;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    background-color: white;
+                    border-radius: 10px;
+                }
+
+                &[open] {
+                    height: 100%;
+                }
+            }
+
+            & .service-div {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                position: relative;
+                z-index: 1;
+                animation: var(--show-down) .5s .5s;
+
+                width: 100%;
+                max-width: 280px;
+                border-radius: 5px;
+                padding: 5px;
+                overflow: hidden;
+                border: solid 3px var(--firebrick);
+
+                margin: 5px;
+                transition: .5s;
+
+                & nav {
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                    transform: translateX(60px);
+                    display: flex;
+                    flex-direction: column;
+                    transition: .3s;
+                    transition-delay: .3s;
+
+                    & svg {
+                        font-size: 1.5rem;
+                        font-weight: 600;
+                        border-radius: 10px;
+                        background-color: orange;
+                        transition: .3s;
+
+                        &.fa-calendar {
+                            padding: 10px;
+                        }
+
+                        &.fa-star {
+                            padding: 10px 8px;
+                            margin-top: 5px;
+                            transition: .3s;
+
+                            &[data-prefix='fas'] {
+                                animation: scale-animation .5s;
+                            }
+                        }
+
+                        &:hover {
+                            background-color: rgb(239, 44, 63);
+                            color: rgb(255, 255, 255);
+                        }
+                    }
+                }
+
+                & img {
+                    width: 100%;
+                    max-height: 280px;
+                    margin-bottom: 2px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+
+                & .footer {
+                    padding: 10px 5px;
+                    color: white;
+
+                    & h4 {
+                        padding-bottom: 10px;
+                        margin-bottom: 5px;
+                        border-bottom: solid 2px var(--orange);
+                    }
+                }
+
+                &:hover {
+                    box-shadow: 0 0 10px rgba(255, 0, 0, 0.876);
+                    transition: .3s;
+
+                    & nav {
+                        transform: none;
+                        transition-delay: 0s;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    main.Barbearia {
+        width: 100%;
+        min-height: 100vh;
+
+        & header {
+            width: 97%;
+            padding-inline: 10px;
+
+            & h1 {
+                font-size: 1.3rem;
+                display: flex;
+                align-items: center;
+                text-wrap: nowrap;
+
+                & a {
+                    margin-right: 5px;
+                    display: flex;
+                }
+
+                & svg {
+                    font-size: 1.2rem;
+                    padding: 10px 14px;
+                    border-radius: 50%;
+                    transition: .3s;
+                    color: white;
+
+                    &:hover {
+                        background-color: white;
+                        color: var(--firebrick);
+                    }
+                }
+            }
+
+            & nav {
+                span {
+                    padding: 1px 5px;
+
+                    & p {
+                        padding-left: 10px;
+                    }
+
+                    & svg {
+
+                        font-size: 1.2rem;
+                        padding: 5px;
+                        border-radius: 50%;
+                        margin: 3px;
+                        pointer-events: none !important;
+
+                        &:hover {
+                            background-color: white;
+                            color: var(--firebrick);
+                        }
+                    }
+                }
+
+            }
+        }
+
+        & .barber-div {
+            padding: 5px 15px;
+            padding-top: 20px;
+
+            display: flex;
+            flex-direction: column;
+            flex: auto;
+
+            & h2.welcome {
+                text-align: center;
+                font-size: 1.1rem;
+                color: white;
+                margin-bottom: 30px;
+                display: none;
+
+                & span {
+                    font-size: 1.4rem;
+                }
+            }
+
+            & section.section-agendamento-btn {
+                display: flex;
+                flex-direction: column-reverse;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 30px;
+
+                & div.barber-logo {
+                    display: flex;
+                    align-items: center;
+
+                    & img {
+                        border-radius: 10px;
+                        width: 200px;
+                        height: 200px;
+                    }
+                }
+
+                & div.btn-agendamento-- {
+                    width: 100%;
+                    margin-left: 0px;
+                    margin-top: 10px;
+                    padding: 5px 10px;
+                    background-color: white;
+                    border-radius: 10px;
+
+                    & div.barber-description {
+                        & h3 {
+                            font-size: 1rem;
+                        }
+
+                        & h4 {
+                            font-size: .9rem;
+                        }
+
+                        & nav {
+                            & span {
+                                font-size: .8rem;
+                                max-width: 110px;
+                            }
+                        }
+                    }
+
+                    & button {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        width: 100%;
+                        max-width: 100%;
+                        padding: 10px;
+                        border-radius: 10px;
+                        margin: 0 auto;
+                        margin-bottom: 5px;
+                        font-size: .7rem;
+
+                    }
+                }
+            }
+
+
+            & .services-list {
+                display: grid;
+                grid-template-columns: repeat(1fr);
+
+                & h3 {
+                    margin-bottom: 20px;
+                    color: white;
+                    border-bottom: solid 2px white;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 3px;
+
+                    & span {
+                        padding: 5px;
+                        cursor: pointer;
+                        transition: .3s;
+                        border-radius: 5px;
+                        font-size: .8rem;
+
+                        &:hover {
+                            background-color: white;
+                            color: black;
+                        }
+
+                        & svg {
+                            margin-left: 5px;
+                        }
+                    }
+                }
+
+                & .services-slide {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    height: 320px;
+                }
+
+                & .service-div {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+
+                    max-width: 220px;
+                    height: min-content;
+                    border-radius: 5px;
+                    overflow: hidden;
+                    border: solid 1px var(--firebrick);
+
+                    cursor: pointer;
+                    transition: .5s;
+
+                    & img {
+                        margin-bottom: 2px;
+                    }
+
+                    & .footer {
+                        padding: 10px 5px;
+                        color: white;
+
+                        font-size: .8rem;
+
+                        & h4 {
+                            padding-bottom: 10px;
+                            margin-bottom: 5px;
+                            border-bottom: solid 2px var(--firebrick);
+
+                        }
+                    }
+
+                    &:hover {
+                        box-shadow: 0 0 8px rgba(255, 0, 0, 0.564);
+                        transition: .3s;
+                    }
+
+                    & nav {
+                        transform: none;
+
+                        & svg {
+                            font-size: 1.3rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.jjjjj{
+    height: 500px;
+    border-radius: 10px;
+    width: calc(100% - 30px);
+    background-color: white;
+    align-self: center;
+    margin-bottom: 20px;
+}
