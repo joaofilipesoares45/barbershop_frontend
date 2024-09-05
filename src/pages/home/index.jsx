@@ -7,7 +7,7 @@ function Home() {
     if (localStorage.getItem('currentUser') !== null) {
         const user = JSON.parse(localStorage.currentUser)
         if (user.tipo === 'empresa') {
-            return <Navigate to='/BarberSide' />
+            return <Navigate to='/barbershop_frontend/BarberSide' />
         }
     }
     return (

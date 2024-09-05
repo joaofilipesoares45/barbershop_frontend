@@ -18,10 +18,10 @@ const AppRoutes = () => {
             <section className="modal load" load=''> <FontAwesomeIcon icon={solid.faSpinner} /> Aguarde...</section>
             <Routes>
 
-                <Route exact path="/" element={<Login />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
-                <Route path="/barbearia"
+                <Route exact path="/barbershop_frontend/" element={<Login />} />
+                <Route path="/barbershop_frontend/login" element={<Login />} />
+                <Route path="/barbershop_frontend/home" element={<PrivateRoute><Home /></PrivateRoute>} />
+                <Route path="/barbershop_frontend/barbearia"
                     element={
                         <PrivateRoute>
                             <Provider>
@@ -30,7 +30,7 @@ const AppRoutes = () => {
                         </PrivateRoute>}
                 />
 
-                <Route path="/barberSide" element={
+                <Route path="/barbershop_frontend/barberSide" element={
                     <BarberProvider>
                         <BarberSide />
                     </BarberProvider>

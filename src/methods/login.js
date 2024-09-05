@@ -52,7 +52,7 @@ const newAcount = async (user) => {
                 msg.type = ''
                 setMsg(msg)
                 setTimeout(() => {
-                    window.location = '/home'
+                    window.location = '/barbershop_frontend/home'
                 }, 2000)
             }
         })
@@ -70,7 +70,7 @@ const login = async (logUser) => {
             
             setMsg(login.message)
             setTimeout(() => {
-                window.location = '/home'
+                window.location = '/barbershop_frontend/home'
             }, 2000)
         }
     } else {
@@ -83,7 +83,7 @@ const login = async (logUser) => {
 const logOut = () => {
     localStorage.removeItem('currentUser')
     localStorage.removeItem('barberHistory')
-    window.location = '/'
+    window.location = '/barbershop_frontend/'
 }
 
 export { log, logOut }

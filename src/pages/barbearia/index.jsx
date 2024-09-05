@@ -43,7 +43,7 @@ function Barbearia() {
     const user = JSON.parse(localStorage.currentUser)
 
     if (user.tipo === 'empresa') {
-        return <Navigate to="/barberSide"/>
+        return <Navigate to="/barbershop_frontend/barberSide"/>
     }
 
     const handleOpenLink = (event) => {
