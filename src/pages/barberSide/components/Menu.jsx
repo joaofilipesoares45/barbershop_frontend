@@ -3,6 +3,8 @@ import BarberContext from "../context/BarberContext"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as solid from '@fortawesome/free-solid-svg-icons'
+import * as regular from '@fortawesome/free-regular-svg-icons'
+
 import '../css/menu.css'
 
 import { logOut } from "../../../methods/login"
@@ -15,8 +17,8 @@ function Menu() {
     return (
         <div className="menu">
             <nav>
-                <button onClick={() => {openModal('.calendar-section'); setCalendarType('')}}>Funcionamento <FontAwesomeIcon icon={solid.faCalendar} /></button>
-                <button onClick={() => handleChangeComponent(<NovoAgendamento/>)}>Novo Agendamento <FontAwesomeIcon icon={solid.faPlus} /></button>
+                <button onClick={() => {openModal('.calendar-section'); setCalendarType('')}}>Calendario <FontAwesomeIcon icon={solid.faCalendar} /></button>
+                <button onClick={() => handleChangeComponent(<NovoAgendamento/>)}>Novo Agendamento <FontAwesomeIcon icon={regular.faCalendarPlus} /></button>
                 <button>Configurações <FontAwesomeIcon icon={solid.faGear} /></button>
                 <button onClick={logOut}>Desconectar <FontAwesomeIcon icon={solid.faPowerOff} /></button>
             </nav>

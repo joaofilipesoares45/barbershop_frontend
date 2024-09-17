@@ -163,6 +163,7 @@
                         bottom: 5px;
                         border-bottom: solid 3px rgba(255, 0, 0, 0);
                         opacity: .3;
+                        /* display: none; */
                     }
 
                     &::before {
@@ -176,13 +177,14 @@
                         align-self: center;
                         opacity: 0;
                         transition: .2s;
+                        display: none;
                     }
 
                     &:hover::before {
                         opacity: 1;
                     }
 
-                    &[pass] {
+                    /* &[pass] {
                         color: gray;
                         cursor: no-drop;
 
@@ -193,7 +195,7 @@
                             background-color: rgb(255, 0, 0);
                         }
 
-                    }
+                    } */
 
                     &[active] {
                         background-color: rgb(238, 238, 238);
@@ -222,7 +224,7 @@
                     }
 
                     &[color='red'] {
-                        color: red;
+                        /* color: red; */
                         pointer-events: none;
                         position: relative;
 
@@ -243,7 +245,7 @@
                     }
 
                     &[color='white'] {
-                        color: rgb(157, 157, 157);
+                        /* color: rgb(157, 157, 157); */
                     }
 
                     &:hover {
@@ -255,7 +257,7 @@
                         color: var(--modal-color);
 
                         &[color='white']{
-                            color: red;
+                            /* color: red; */
                             &::after {
                                 border-color: red;
                             }

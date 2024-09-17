@@ -46,7 +46,7 @@ function Agendamento() {
     }, [setServicosAgenda])
 
     window.onbeforeunload = () => {
-        localStorage.barberHistory = JSON.stringify(window.location.href.split(window.location.port)[1])
+        localStorage.barberHistory = JSON.stringify(window.location.href.split('barbershop_frontend')[1])
         if (servicosAgenda.length > 0) {
             localStorage.servicosAgendamento = JSON.stringify(servicosAgenda);
         }

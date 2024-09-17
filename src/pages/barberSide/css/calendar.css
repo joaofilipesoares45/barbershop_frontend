@@ -1,0 +1,152 @@
+.rr0089 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% - 400px);
+    padding-block: 10px;
+
+}
+
+
+.BarberSide .sidebar .calendar-section[barber] {
+    justify-content: space-between;
+    flex-direction: row;
+
+    .info-day {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.305);
+        height: 100%;
+        padding: 10px;
+        position: relative;
+
+        & h3 {
+            padding-left: 10px;
+            padding-bottom: 5px;
+            border-bottom: solid 2px black;
+            margin-bottom: 5px;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            box-shadow: none;
+            height: 100%;
+            margin-top: 15px;
+            padding-top: 10px;
+
+            .agendamento-div {
+                width: 100%;
+                background-color: rgb(245, 245, 245);
+                padding: 5px 10px;
+
+                & h4 {
+                    margin-bottom: 5px;
+                }
+
+                & div.agend {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    padding: 5px;   
+                    margin-bottom: 5px;
+                    border-bottom: solid 2px gainsboro;
+                    position: relative;
+
+                    & div {
+                        display: flex;
+                        max-width: 50px;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+
+                        & p {
+                            font-size: .8rem;
+                            text-overflow: ellipsis;
+
+                            &:not(&:last-child)::after {
+                                content: ',';
+                                margin-right: 5px;
+                            }
+                        }
+                    }
+
+                    & span {
+                        width: 100%;
+                        height: auto;
+                        min-height: auto;
+                        padding-block: 5px;
+                        padding-inline: 0px !important;
+                        border: none;
+
+                        & p {
+                            font-size: .9rem;
+                        }
+                    }
+
+                    & button {
+                        width: auto;
+                        font-weight: 550;
+                        padding: 10px 25px;
+                        background-color: gainsboro;
+                        box-shadow: 0 1px 5px rgba(182, 182, 182, 0.596);
+                        border-radius: 5px;
+                        font-size: .8rem; 
+                        transition: .3s;
+                        margin-top: 5px;
+
+                        &:hover {
+                            background-color: white;
+                        }
+                    }
+                }
+            }
+        }
+
+        & button.confirm-btn {
+            background-color: red;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.254);
+            font-size: .9rem;
+            font-weight: 550;
+            transition: .3s;
+            position: absolute;
+            bottom: 10px;
+            width: calc(100% - 20px);
+
+            &:hover {
+                background-color: white;
+                color: red;
+            }
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .BarberSide .sidebar .calendar-section[barber] {
+        justify-content: space-between;
+        flex-direction: column;
+
+        .rr0089 {
+            width: 100%;
+
+            .calendar-div {
+                margin-inline: 0px !important;
+                height: min-content;
+                justify-content: space-between;
+            }
+        }
+
+        .info-day {
+            animation: var(--show-left);
+            background-color: white;
+            width: 100%;
+            height: 50%;
+            bottom: 0;
+            padding: 10px 5px;
+        }
+    }
+}

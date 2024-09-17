@@ -15,22 +15,25 @@ const AppRoutes = () => {
     return (
         <Router>
             <NotifModal></NotifModal>
-            <section className="modal load" load=''> <FontAwesomeIcon icon={solid.faSpinner} /> Aguarde...</section>
+            <section className="modal load" load=''> <FontAwesomeIcon icon={solid.faSpinner} /> <FontAwesomeIcon icon={solid.faArrowsRotate} onClick={() => window.location = ''} /> </section>
             <Routes>
 
                 <Route exact path="/barbershop_frontend/" element={<Login />} />
-                <Route path="/barbershop_frontend/login" element={<Login />} />
-                <Route path="/barbershop_frontend/home" element={<PrivateRoute><Home /></PrivateRoute>} />
-                <Route path="/barbershop_frontend/barbearia"
-                    element={
-                        <PrivateRoute>
+                {/* <Route path="/barbershop_frontend/login" element={<Login />} /> */}
+                <Route path="/barbershop_frontend/home" element={<PrivateRoute/>}>
+                    <Route path="/barbershop_frontend/home"element={<Home />}/>
+                </ Route>
+
+                <Route path="/barbershop_frontend/barbearia" element={<PrivateRoute />}>
+                    <Route path="/barbershop_frontend/barbearia"
+                        element={
                             <Provider>
                                 <Barbearia />
-                            </Provider>
-                        </PrivateRoute>}
-                />
+                            </Provider>}
+                    />
+                </Route>
 
-                <Route path="/barbershop_frontend/barberSide" element={
+                <Route path="/barbershop_frontend/barber-side" element={
                     <BarberProvider>
                         <BarberSide />
                     </BarberProvider>

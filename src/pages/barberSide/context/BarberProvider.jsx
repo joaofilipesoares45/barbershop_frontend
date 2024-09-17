@@ -21,9 +21,11 @@ function BarberProvider({ children }) {
     const [calendarType, setCalendarType] = useState()
 
     const [agendamentos, setAgendamentos] = useState([])
+    const [dadosAgendamento, setDadosAgendamento] = useState({})
 
     const [agendamento, setAgendamento] = useState(new Agendamento({}))
     const [folgas, setFolgas] = useState([])
+    const [services, setServices] = useState([])
 
     const value = {
         barber,
@@ -34,9 +36,14 @@ function BarberProvider({ children }) {
 
         agendamentos,
         setAgendamentos,
+        dadosAgendamento, 
+        setDadosAgendamento,
 
         folgas,
         setFolgas,
+
+        services, 
+        setServices,
 
         component,
         setComponent,

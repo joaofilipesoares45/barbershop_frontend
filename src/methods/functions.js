@@ -101,8 +101,9 @@ const openModal = (modalClass) => {
 }
 
 const closeModal = () => {
-    document.querySelectorAll('.modal').forEach(modal => {
+    document.querySelectorAll('.modal').forEach(modal => {        
         modal.removeAttribute('open')
+        modal.removeAttribute('load')
     })
 }
 
@@ -147,12 +148,6 @@ window.onscroll = () => {
 
 window.onbeforeunload = () => {
     document.querySelector('section.load').setAttribute('load', '')
-}
-
-window.onload = () => {
-    setTimeout(() => {
-        document.querySelector('section.load').removeAttribute('load')
-    }, 500)
 }
 
 window.onclick = ({target}) => {    

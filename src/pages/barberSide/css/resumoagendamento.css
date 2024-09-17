@@ -25,6 +25,7 @@
 
         display: flex;
         flex-direction: column;
+        justify-content: space-between;
 
         & h3 {
             display: flex;
@@ -109,7 +110,52 @@
             }
         }
 
-        & button {
+        & nav {
+            display: flex;
+            align-self: flex-end;
+            justify-content: flex-end;
+            & span {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+
+                background-color: rgb(13, 0, 255);
+                color: white;
+                font-weight: 550;
+                padding: 10px 15px;
+                margin-left: 10px;
+                cursor: pointer;
+
+                &[countdown]{
+                    /* background-color: gray !important; */
+
+                    & svg {
+                        display: none;
+                    }
+
+                    &::after {
+                        content: attr(countdown);
+                        color: white;
+                        margin-left: 10px;
+                    }
+                }
+
+                &:last-child{
+                    background-color: red;
+                }
+
+                & p {
+                    pointer-events: none;
+                }
+
+                & svg{
+                    margin-left: 10px;
+                    pointer-events: none;
+                }
+            }
+        }
+
+        /* & button {
             position: absolute;
             bottom: 10px;
             width: calc(100% - 20px);
@@ -148,7 +194,7 @@
                     }
                 }
             }
-        }
+        } */
     }
 }
 

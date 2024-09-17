@@ -12,10 +12,9 @@ import { setMsg } from '../../home/components/notif'
 import NovoAgendamento from './NovoAgendamento'
 
 function Agendamento({ agendamento }) {
-
-    const [services, setServices] = useState([])
+    
     const [servicosAgenda, setServicosAgenda] = useState([])
-    const { setAgendamento, handleChangeComponent, setCalendarDate } = useContext(BarberContext)
+    const { setAgendamento, handleChangeComponent, setCalendarDate, services, setServices } = useContext(BarberContext)
 
     useEffect(() => {
         const getServices = async () => {
@@ -39,8 +38,23 @@ function Agendamento({ agendamento }) {
     }
 
     const handleDeleteAgendamento = ({ target }) => {
-        if (target.textContext === 'Excluir') {
-            target.textContext = 'Confirmar'
+        const text = target.querySelector('p')
+
+        if (!text.hasAttribute('countdown')) {
+            let count = 5
+            text.textContent = 'Confirmar'
+            target.setAttribute('countdown', `${count}s`)
+
+            const intervalo = setInterval(() => {
+                target.setAttribute('countdown', `${count}s`)
+                count > 0 ? count-- : count = 5
+            }, 1000);
+
+            setTimeout(() => {
+                text.textContent = 'Excluir'
+                target.removeAttribute('countdown')
+                clearInterval(intervalo)
+            }, 6000);
         } else {
             closeModal()
             connectionApi('delete', 'agenda', agendamento).then((res) => res.json()).then((data) => setMsg(data))
@@ -71,8 +85,8 @@ function Agendamento({ agendamento }) {
 
                 </div>
                 <nav>
-                    <span onClick={handleEditAgendamento}>Editar <FontAwesomeIcon icon={solid.faPen} /></span>
-                    <span onClick={handleDeleteAgendamento}>Excluir <FontAwesomeIcon icon={solid.faTrash} /></span>
+                    <span onClick={handleEditAgendamento}><p>Editar</p><FontAwesomeIcon icon={solid.faPen} /></span>
+                    <span onClick={handleDeleteAgendamento}><p>Excluir</p><FontAwesomeIcon icon={solid.faTrash} /></span>
                 </nav>
             </div>
         </div>

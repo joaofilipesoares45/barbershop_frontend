@@ -1,8 +1,8 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 
-export function PrivateRoute({ children }) {
+export function PrivateRoute() {
     const user = localStorage.getItem('currentUser')
 
-    return user !== null ? children : <Navigate to='/'/>
+    return !!user ? <Outlet /> : <Navigate to='/barbershop_frontend/'/>
 }

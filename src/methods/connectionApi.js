@@ -1,9 +1,14 @@
+import { setMsg } from "../pages/home/components/notif";
+
 const connectionApi = async (type, path, body) => {
     const href = `http://127.0.0.1:5001/${path}`;
     if (!body) {
         body = undefined
     }
     let headers = {}
+
+    const load = document.querySelector('section.modal.load')
+
     switch (type) {
         case 'get':
             headers = {
@@ -15,9 +20,9 @@ const connectionApi = async (type, path, body) => {
                 method: 'GET',
             }
             try {
-                return await fetch(href, headers).then(res => { return res.json() });
+                return await fetch(href, headers).then(res => { load.removeAttribute('load'); return res.json() });
             } catch (error) {
-
+                load.setAttribute('load', '')
             }
             break
         case 'post':

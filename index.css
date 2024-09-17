@@ -88,11 +88,11 @@ code {
 
 @keyframes spin {
   from {
-      rotate: 0deg;
+    rotate: 0deg;
   }
 
   to {
-      rotate: 360deg;
+    rotate: 360deg;
   }
 }
 
@@ -136,6 +136,7 @@ a {
 main.page {
   width: 100%;
   min-height: 100vh;
+  padding-bottom: 50px;
   /* backdrop-filter: blur(1px); */
 }
 
@@ -149,6 +150,25 @@ main.page {
 ::-webkit-scrollbar-thumb {
   background-color: rgba(184, 184, 184, 0.504);
   border-radius: 10px;
+}
+
+@keyframes load-after {
+  0% {
+    content: 'Aguarde';
+  }
+
+  50% {
+    content: 'Aguarde.';
+  }
+
+  75% {
+    content: 'Aguarde..';
+
+  }
+
+  100% {
+    content: 'Aguarde...';
+  }
 }
 
 section.load {
@@ -166,15 +186,48 @@ section.load {
   pointer-events: none;
 
   & svg {
-    cursor: default !important;
     font-size: 2.5rem;
     color: rgb(0, 40, 170);
-    animation: spin 1s infinite;
-    margin-bottom: 15px;
+
+    &.fa-spinner {
+      animation: spin 1s infinite;
+      cursor: default !important;
+      margin-bottom: 15px;
+    }
+
+    &.fa-arrows-rotate {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      font-size: 1.5rem;
+      padding: 10px;
+      border-radius: 50%;
+      background-color: gainsboro;
+      opacity: 0;
+      transition: .3s;
+
+      &:hover {
+        background-color: rgb(183, 183, 183);
+      }
+    }
   }
 
   &[load] {
     opacity: 1;
     pointer-events: all;
+
+    & svg.fa-arrows-rotate {
+      animation: show-top .4s 3s forwards;
+    }
+  }
+
+  &::after {
+    content: '';
+    animation: load-after 1s linear infinite;
+    transition: 1s;
+    font-weight: 550;
+    color: var(--modal-color);
+    padding: 10px 20px;
+    background-color: gainsboro;
   }
 }

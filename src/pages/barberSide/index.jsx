@@ -22,7 +22,7 @@ function BarberSide() {
     const today = new Date()
     const [date, setDate] = useState(today.toLocaleDateString('pt-BR').split('/').reverse().join('-'))
 
-    const { barber, setBarber, component, handleChangeComponent, agendamentos, setAgendamentos, setFolgas } = useContext(BarberContext)
+    const { barber, setBarber, component, handleChangeComponent, agendamentos, setAgendamentos, setFolgas, dadosAgendamento, setDadosAgendamento } = useContext(BarberContext)
 
     useEffect(() => {
         if (localStorage.getItem('currentUser') !== null) {
@@ -50,10 +50,9 @@ function BarberSide() {
             setFolgas(DBfolgas.filter(folga => folga.idEmpresa === barber.id))
         }
         getFolgas()
-    }, [barber, setFolgas])
+    })
 
-    const handleSetDate = (event) => {
-        const target = event.target
+    const handleSetDate = ({ target }) => {
         const dateMills = new Date(date).setHours(0)
         const test = new Date(dateMills).getTime(0)
 
@@ -73,8 +72,6 @@ function BarberSide() {
     }
 
     const week = getWeek(date)
-
-    const [dadosAgendamento, setDadosAgendamento] = useState({})
 
     const scrollDate = (event) => {
         console.log(2323);

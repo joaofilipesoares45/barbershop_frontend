@@ -15,9 +15,18 @@ main.BarberSide .sidebar .menu {
             border-radius: 5px;
             margin: 3px;
             text-wrap: nowrap;
+            font-weight: 500;
+
+            & svg{
+                font-size: 1rem;
+            }
 
             &:hover {
                 color: var(--modal-color);
+            }
+
+            &:last-child:hover {
+                color: red;
             }
         }
     }

@@ -7,7 +7,14 @@ function Home() {
     if (localStorage.getItem('currentUser') !== null) {
         const user = JSON.parse(localStorage.currentUser)
         if (user.tipo === 'empresa') {
-            return <Navigate to='/barbershop_frontend/BarberSide' />
+            return <Navigate to='/barbershop_frontend/barber-side'/>
+        }else{
+            if (localStorage.getItem('barberHistory') !== null) {
+                const href = JSON.parse(localStorage.barberHistory)
+                console.log(href);
+                
+                return <Navigate to={`/barbershop_frontend${href}`}/>
+            }
         }
     }
     return (
