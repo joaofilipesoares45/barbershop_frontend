@@ -1,15 +1,15 @@
 import { useContext, useEffect, useState } from "react"
-import AppContext from "../../../context/AppContext";
 import { newFavorite, numberForBrl, removeFavorite, zoomImg } from "../../../methods/functions";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as solid from "@fortawesome/free-solid-svg-icons";
 import * as regular from "@fortawesome/free-regular-svg-icons";
 import { setMsg } from "../../home/components/notif";
+import { DataContext } from "../../../context/DataProvider";
 
 
 function ServiceDiv({ id, nome, valor, foto, duracao, index }) {
-    const { servicos, servicosAgenda, setServicosAgenda } = useContext(AppContext)
+    const { servicos, servicosAgenda, setServicosAgenda } = useContext(DataContext)
 
     const handleAddService = (index) => {
         if (servicosAgenda.length < 2) {

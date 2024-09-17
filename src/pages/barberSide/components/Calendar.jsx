@@ -1,11 +1,15 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as solid from '@fortawesome/free-solid-svg-icons'
+
 import { dateFormat, getCalendar, openModal, closeModal } from '../../../methods/functions'
 import dateValid from '../../../methods/filters'
 import { connectionApi } from '../../../methods/connectionApi'
-import { useContext, useEffect, useState } from 'react'
-import BarberContext from '../context/BarberContext'
 import { setMsg } from '../../home/components/notif'
+
+import { useContext, useEffect, useState } from 'react'
+import { BarberContext } from '../context/BarberProvider'
+import { DataContext } from '../../../context/DataProvider'
+
 
 import "../css/calendar.css"
 
@@ -13,7 +17,8 @@ function Calendar({ type }) {
 
     const month_names = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
 
-    const { barber, setCalendarDate, calendarMonth, calendarYear, setCalendarMonth, setCalendarYear, agendamentos, folgas, setDadosAgendamento, services } = useContext(BarberContext)
+    const { barber, setDadosAgendamento } = useContext(BarberContext)
+    const { setCalendarDate, calendarMonth, calendarYear, setCalendarMonth, setCalendarYear, agendamentos, services, fechado } = useContext(DataContext)
 
     const monthModal = (e) => {
         const target = e.target
@@ -36,7 +41,7 @@ function Calendar({ type }) {
         const data = target.getAttribute('id');
         obj.data = data
         obj.agendamentos = agendamentos.filter(agend => agend.data === data)
-        obj.folga = folgas.filter(({ data }) => data.includes(obj.data))
+        obj.folga = fechado.filter(({ data }) => data.includes(obj.data))
 
         if (type !== undefined) {
             setDay(obj)
@@ -67,7 +72,7 @@ function Calendar({ type }) {
     }
 
     const handleOpenBarber = (id) => {
-        const folga = folgas.filter(folga => folga.id === id)[0]
+        const folga = fechado.filter(folga => folga.id === id)[0]
         connectionApi('delete', 'folgas', folga)
     }
 
@@ -139,12 +144,12 @@ function Calendar({ type }) {
 
                                         {JSON.parse(agendamento.servicos).length > 0 && <h5>Serviços</h5>}
                                         <div>
-                                            
+
                                             {JSON.parse(agendamento.servicos).map(id => {
                                                 const list = services.filter(service => service.id === id)
                                                 return list.map(res => <p>{res.nome}</p>)
                                             })}
-                                           
+
                                         </div>
                                         <button onClick={() => { closeModal(); setDadosAgendamento(agendamento); openModal('.barber-side-agendamento') }}>Ver</button>
                                     </div>

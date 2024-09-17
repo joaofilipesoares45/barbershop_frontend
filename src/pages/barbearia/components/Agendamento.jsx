@@ -3,14 +3,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as solid from "@fortawesome/free-solid-svg-icons";
 import { closeModal, numberForBrl, openModal } from '../../../methods/functions';
 import { useContext, useEffect } from 'react';
-import AppContext from '../../../context/AppContext';
 import { connectionApi } from '../../../methods/connectionApi';
 import { setMsg } from '../../home/components/notif';
+import { DataContext } from '../../../context/DataProvider';
 
 
 const horarioFunc = ["08:00", "09:00", "10:00", "11:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00"]
 function Agendamento() {
-    const { servicosAgenda, setServicosAgenda, calendarDate, agendamento, agendamentos } = useContext(AppContext)
+    const { servicosAgenda, setServicosAgenda, calendarDate, agendamento, agendamentos } = useContext(DataContext)
 
     const client = JSON.parse(localStorage.currentUser)
 

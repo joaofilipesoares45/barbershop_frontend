@@ -6,29 +6,32 @@ import * as solid from '@fortawesome/free-solid-svg-icons'
 import { numberForBrl, closeModal } from '../../../methods/functions'
 
 import { connectionApi } from '../../../methods/connectionApi'
-import BarberContext from '../context/BarberContext'
+import {BarberContext} from '../context/BarberProvider'
 import * as AG from '../../../Classes/Agendamento'
 import { setMsg } from '../../home/components/notif'
 import NovoAgendamento from './NovoAgendamento'
+import { DataContext } from '../../../context/DataProvider'
 
 function Agendamento({ agendamento }) {
     
     const [servicosAgenda, setServicosAgenda] = useState([])
-    const { setAgendamento, handleChangeComponent, setCalendarDate, services, setServices } = useContext(BarberContext)
+    const { setAgendamento, handleChangeComponent} = useContext(BarberContext)
+    const { setCalendarDate, servicos, setServicos } = useContext(DataContext)
+
 
     useEffect(() => {
         const getServices = async () => {
             const DBservices = await connectionApi('get', 'service')
-            setServices(DBservices.filter(service => service.idEmpresa === JSON.parse(localStorage.currentUser).id))
+            setServicos(DBservices.filter(service => service.idEmpresa === JSON.parse(localStorage.currentUser).id))
         }
         getServices()
 
         if (agendamento.servicos !== undefined) {
             let list = []
-            JSON.parse(agendamento.servicos).forEach(id => list.push(services.filter(service => service.id === id)[0]))
+            JSON.parse(agendamento.servicos).forEach(id => list.push(servicos.filter(service => service.id === id)[0]))
             setServicosAgenda(list)
         }
-    }, [agendamento.servicos, services])
+    }, [agendamento.servicos, servicos])
 
     const handleEditAgendamento = () => {
         setCalendarDate(agendamento.data)

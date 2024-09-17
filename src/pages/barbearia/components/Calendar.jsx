@@ -1,17 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '../css/calendar.css'
 import { useContext } from 'react'
-import AppContext from '../../../context/AppContext'
-import { getCalendar } from '../../../methods/functions'
-import dateValid from '../../../methods/filters'
+import { DataContext } from '../../../context/DataProvider'
 
 function Calendar() {
     const month_names = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
-    const { calendarMonth, setCalendarMonth } = useContext(AppContext)
-    const { calendarYear, setCalendarYear } = useContext(AppContext)
-    const { setCalendarDate, agendamento } = useContext(AppContext)
+    const { calendarMonth, setCalendarMonth, calendarYear, setCalendarYear, setCalendarDate, calendarDays, agendamento } = useContext(DataContext)
 
     const monthModal = (e) => {
         const target = e.target
@@ -39,16 +35,7 @@ function Calendar() {
             });
             target.setAttribute('selected', '')
         }
-
     }
-
-    const [days, setDays] = useState([])
-    useEffect(() => {
-        const getDays = async () => {
-            setDays(await dateValid(getCalendar(calendarMonth, calendarYear), Number(window.location.search.replace(`?id=`, ``))))
-        }
-        getDays()
-    }, [calendarMonth, calendarYear])
 
     return (
         <section className='modal calendar-section'>
@@ -68,7 +55,7 @@ function Calendar() {
                     </div>
                     <div className="calendar-days">
                         {
-                            days.map((day, index) => {
+                            calendarDays.map((day, index) => {
                                 return (
                                     <div
                                         key={index}

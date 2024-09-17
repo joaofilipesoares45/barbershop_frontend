@@ -1,11 +1,13 @@
 import { connectionApi } from '../../../methods/connectionApi';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import '../css/main.css'
 import Search from './search'
 import SideBar from './sidebar';
+import { DataContext } from '../../../context/DataProvider';
 
 function Main() {
     const [barbers, setBarbers] = useState([])
+    const { setBarbearia } = useContext(DataContext)
 
     useEffect(() => {
         const getBarbers = async () => {
@@ -55,7 +57,7 @@ function Main() {
                                                     }
                                                 </p>
                                             </h5>
-                                            <button onClick={() => { window.location = `barbearia?id=${id}` }} >Ver Barbearia</button>
+                                            <button onClick={() => { setBarbearia(id) }} >Ver Barbearia</button>
                                         </div>
                                     </div>
                                 </div>

@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import BarberContext from "./BarberContext";
+import React, { useState, createContext } from "react";
 import { openModal } from "../../../methods/functions";
 import Agendamento from "../../../Classes/Agendamento";
 
-function BarberProvider({ children }) {
+export const BarberContext = createContext();
+
+export function BarberProvider({ children }) {
 
     const [barber, setBarber] = useState({})
 
@@ -14,18 +15,18 @@ function BarberProvider({ children }) {
         openModal('.BarberSide .sidebar')
     }
 
-    const currDate = new Date()
-    const [calendarDate, setCalendarDate] = useState('')
-    const [calendarYear, setCalendarYear] = useState(currDate.getFullYear())
-    const [calendarMonth, setCalendarMonth] = useState(currDate.getMonth())
+    // const currDate = new Date()
+    // const [calendarDate, setCalendarDate] = useState('')
+    // const [calendarYear, setCalendarYear] = useState(currDate.getFullYear())
+    // const [calendarMonth, setCalendarMonth] = useState(currDate.getMonth())
     const [calendarType, setCalendarType] = useState()
 
-    const [agendamentos, setAgendamentos] = useState([])
+    // const [agendamentos, setAgendamentos] = useState([])
     const [dadosAgendamento, setDadosAgendamento] = useState({})
 
     const [agendamento, setAgendamento] = useState(new Agendamento({}))
-    const [folgas, setFolgas] = useState([])
-    const [services, setServices] = useState([])
+    // const [folgas, setFolgas] = useState([])
+    // const [services, setServices] = useState([])
 
     const value = {
         barber,
@@ -34,27 +35,13 @@ function BarberProvider({ children }) {
         agendamento,
         setAgendamento,
 
-        agendamentos,
-        setAgendamentos,
         dadosAgendamento, 
         setDadosAgendamento,
-
-        folgas,
-        setFolgas,
-
-        services, 
-        setServices,
 
         component,
         setComponent,
         handleChangeComponent,
 
-        calendarDate,
-        setCalendarDate,
-        calendarMonth,
-        setCalendarMonth,
-        calendarYear,
-        setCalendarYear,
         calendarType,
         setCalendarType,
 
@@ -66,5 +53,3 @@ function BarberProvider({ children }) {
         </BarberContext.Provider>
     )
 }
-
-export default BarberProvider

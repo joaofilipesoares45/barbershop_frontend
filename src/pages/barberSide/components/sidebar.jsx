@@ -3,7 +3,7 @@ import Calendar from './Calendar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as solid from '@fortawesome/free-solid-svg-icons'
 import { useContext } from 'react'
-import BarberContext from '../context/BarberContext'
+import {BarberContext} from '../context/BarberProvider'
 
 function Sidebar({ component }) {
 

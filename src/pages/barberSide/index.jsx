@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react"
 import { Navigate } from "react-router-dom"
-import BarberContext from "./context/BarberContext"
+import {BarberContext} from "./context/BarberProvider"
+import { DataContext } from "../../context/DataProvider"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as solid from '@fortawesome/free-solid-svg-icons'
@@ -22,7 +23,8 @@ function BarberSide() {
     const today = new Date()
     const [date, setDate] = useState(today.toLocaleDateString('pt-BR').split('/').reverse().join('-'))
 
-    const { barber, setBarber, component, handleChangeComponent, agendamentos, setAgendamentos, setFolgas, dadosAgendamento, setDadosAgendamento } = useContext(BarberContext)
+    const { barber, setBarber, component, handleChangeComponent, dadosAgendamento, setDadosAgendamento } = useContext(BarberContext)
+    const { agendamentos, setAgendamentos } = useContext(DataContext)
 
     useEffect(() => {
         if (localStorage.getItem('currentUser') !== null) {
@@ -33,24 +35,6 @@ function BarberSide() {
             }
         }
     }, [setBarber, setAgendamentos])
-
-    useEffect(() => {
-        const getAgendamentos = async () => {
-            const agendamentosDB = await connectionApi('get', 'agenda')
-            setAgendamentos(agendamentosDB.filter(agend => agend.idEmpresa === barber.id))
-        }
-
-        getAgendamentos()
-    }, [agendamentos, barber.id, setAgendamentos]);
-
-    useEffect(() => {
-        const getFolgas = async () => {
-            const DBfolgas = await connectionApi('get', 'folgas')
-
-            setFolgas(DBfolgas.filter(folga => folga.idEmpresa === barber.id))
-        }
-        getFolgas()
-    })
 
     const handleSetDate = ({ target }) => {
         const dateMills = new Date(date).setHours(0)
@@ -73,11 +57,6 @@ function BarberSide() {
 
     const week = getWeek(date)
 
-    const scrollDate = (event) => {
-        console.log(2323);
-
-    }
-
     return (
         <main className="page BarberSide">
             <header>
@@ -97,7 +76,7 @@ function BarberSide() {
                     <div className="info work-days">
                         <h3>
                             Agendamentos
-                            <p onPlay={scrollDate}>{`${month_names[Number(date.split('-')[1]) - 1]} - ${today.getFullYear()}`}</p>
+                            <p>{`${month_names[Number(date.split('-')[1]) - 1]} - ${today.getFullYear()}`}</p>
                             <nav onClick={handleSetDate}>
                                 <FontAwesomeIcon icon={solid.faChevronLeft} />
                                 <FontAwesomeIcon icon={solid.faChevronRight} />

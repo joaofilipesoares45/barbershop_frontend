@@ -1,5 +1,6 @@
 import { useContext } from "react"
-import BarberContext from "../context/BarberContext"
+import {BarberContext} from "../context/BarberProvider"
+import { DataContext } from "../../../context/DataProvider"
 
 import '../css/novoagendamento.css'
 
@@ -11,9 +12,11 @@ import { closeModal, openModal } from "../../../methods/functions"
 import { connectionApi } from "../../../methods/connectionApi"
 import { setMsg } from "../../home/components/notif"
 
+
 const horarioFunc = ["08:00", "09:00", "10:00", "11:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00"]
 function NovoAgendamento({ }) {
-    const { barber, handleChangeComponent, calendarDate, agendamento, agendamentos, setCalendarType, setAgendamento } = useContext(BarberContext)
+    const { barber, handleChangeComponent, agendamento, setCalendarType, setAgendamento } = useContext(BarberContext)
+    const { agendamentos, calendarDate, fechado } = useContext(DataContext)
 
     const handleSetHour = (e) => {
         let selectedHour

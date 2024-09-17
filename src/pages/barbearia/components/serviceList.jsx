@@ -1,24 +1,13 @@
-import { useEffect, useContext } from "react";
-import { connectionApi } from "../../../methods/connectionApi";
-
+import { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as solid from "@fortawesome/free-solid-svg-icons";
-import AppContext from "../../../context/AppContext";
+
 import ServiceDiv from "./ServiceDiv";
+import { DataContext } from "../../../context/DataProvider";
 
 function ServiceList() {
-    const { servicos, setServicos } = useContext(AppContext)
-    const barberID = Number(window.location.search.replace(`?id=`, ``))
-
-    useEffect(() => {
-        const getServices = async () => {
-            const DBservices = await connectionApi('get', 'service')
-            const barberServices = DBservices.filter(({ idEmpresa }) => idEmpresa === barberID)
-            setServicos(barberServices)
-        }
-        getServices()
-    }, [barberID, setServicos])
-
+    const { servicos } = useContext(DataContext)
+    
     return (
         <div className="services-list">
             <h3>

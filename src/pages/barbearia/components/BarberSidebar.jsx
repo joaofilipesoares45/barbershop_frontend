@@ -2,17 +2,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as solid from "@fortawesome/free-solid-svg-icons";
 import '../css/BarberSidebar.css'
 
-import AppContext from "../../../context/AppContext";
 import { useContext } from "react";
 import { logOut } from "../../../methods/login";
 
 import { compareDates, dateFormat, dateSort, numberForBrl } from "../../../methods/functions";
+import { DataContext } from "../../../context/DataProvider";
 
 
 function BarberSidebar() {
-    const { agendamentos } = useContext(AppContext)
+    const { agendamentos, barbearia } = useContext(DataContext)
     const usuarioAtual = JSON.parse(localStorage.currentUser)
-    let preAgendList = agendamentos.filter((el) => el.nomeCliente === usuarioAtual.nome && el.idEmpresa === Number(window.location.search.replace(`?id=`, ``)) && compareDates(dateFormat(el.data)))
+    let preAgendList = agendamentos.filter((el) => el.nomeCliente === usuarioAtual.nome && el.idEmpresa === barbearia && compareDates(dateFormat(el.data)))
 
     preAgendList = dateSort(preAgendList)
     return (
